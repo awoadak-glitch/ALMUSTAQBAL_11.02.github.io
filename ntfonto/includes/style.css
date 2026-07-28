@@ -1,19 +1,23 @@
 body {
-    background: #111111;
-    color: #dddddd;
+    /* تم تغيير الخلفية لتكون تدرج لوني دائري يعطي طابعاً مستقبلياً */
+    background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
+    color: #64ffda;
     margin: 0;
     padding: 20px;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
     color: #ffffff;
-    font-size: 28px;
+    font-size: 32px;
     margin: 10px 0 5px 0;
+    text-shadow: 0 0 15px rgba(100, 255, 218, 0.6); /* إضافة توهج للنص */
+    letter-spacing: 1.5px;
 }
 
 h3 {
-    color: #aaaaaa;
+    color: #8892b0;
     font-size: 14px;
     font-weight: normal;
     margin: 0 0 15px 0;
@@ -21,32 +25,43 @@ h3 {
 
 hr {
     border: 0;
-    border-top: 1px solid #333333;
+    border-top: 1px solid #64ffda;
     margin: 15px auto;
     width: 90%;
+    opacity: 0.3;
 }
 
 .btn-container {
     margin: 20px 0 30px 0;
+    color: #e6f1ff;
 }
 
 button {
-    background: #2563eb;
-    color: #ffffff;
-    border: none;
+    /* تعديل الزر ليكون شفافاً بإطار مضيء */
+    background: transparent;
+    color: #64ffda;
+    border: 2px solid #64ffda;
     padding: 12px 35px;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+    transition: all 0.3s ease; /* حركة ناعمة عند تمرير الماوس */
+    text-transform: uppercase;
 }
 
 button:disabled, button:hover:disabled {
-    background: #0b2253;
+    background: #020c1b;
+    border-color: #333333;
+    color: #555555;
+    box-shadow: none;
     cursor: default;
 }
 
-button:hover {
-    background: #1d4ed8;
+button:hover:not(:disabled) {
+    background: #64ffda;
+    color: #020c1b;
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.7);
 }
 
 .main-layout {
@@ -63,21 +78,25 @@ button:hover {
 .media-box img {
     width: 90%;
     height: auto;
-    border: 1px solid #222222;
+    /* إزالة الإطار القديم وإضافة توهج حول الشعار الخاص بك */
+    border: none;
+    filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.4)); 
 }
 
 #console {
     float: right;
     width: 70%;
-    background: #000000;
-    color: #00ff00;
+    background: rgba(2, 12, 27, 0.8);
+    color: #64ffda;
     font-size: 14px;
     padding: 15px;
     text-align: left;
     height: 290px;
     overflow-y: scroll;
     word-wrap: break-word;
-    border: 1px solid #222222;
+    border: 1px solid #333333;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
 }
 
 #kernel-options {
@@ -93,10 +112,13 @@ input[type="radio"] {
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 input[type="radio"]:checked {
-    background-color: #00ff00;
+    background-color: #64ffda; /* لون التحديد أصبح متناسقاً مع التصميم */
+    border-color: #64ffda;
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.8);
 }
 
 .mt-2{
