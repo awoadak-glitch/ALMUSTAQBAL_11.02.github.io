@@ -1,93 +1,164 @@
 /* 
-  Theme: Astro Bot & The Future
-  Style: Futuristic, Glassmorphism, Neon Glow & Floating Animations
+  Theme: PS5 Future — Astro Edition
+  Style: Glassmorphism + Holographic Neon + Layered Depth
+  ملاحظة: تصميم بصري بالكامل (ألوان، توهج، حركة) بدون أي منطق برمجي
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600&display=swap');
+
+:root {
+    --ps-blue: #00d4ff;
+    --ps-blue-deep: #0077ff;
+    --ps-white: #f4f9ff;
+    --ps-bg-dark: #050b16;
+    --ps-bg-darker: #01050c;
+    --ps-panel: rgba(8, 20, 40, 0.55);
+    --ps-border: rgba(0, 212, 255, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    /* خلفية فضاء أسترو بوت - تدرج من الأزرق الداكن جداً إلى الأسود العميق */
-    background: radial-gradient(circle at top center, #0c1a30 0%, #02060d 100%);
-    color: #ffffff;
+    /* طبقات إضاءة متعددة توحي بعمق الفضاء وأضواء PS5 */
+    background:
+        radial-gradient(circle at 15% 10%, rgba(0, 212, 255, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(120, 0, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at top center, var(--ps-bg-dark) 0%, var(--ps-bg-darker) 100%);
+    background-attachment: fixed;
+    color: var(--ps-white);
     margin: 0;
-    padding: 20px;
+    padding: 24px;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط عصري وانسيابي */
+    font-family: 'Rajdhani', 'Segoe UI', Tahoma, sans-serif;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* خطوط ضوئية مائلة تتحرك ببطء في الخلفية، بروح غلاف PS5 */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(
+            115deg,
+            transparent 0px,
+            transparent 140px,
+            rgba(0, 212, 255, 0.035) 140px,
+            rgba(0, 212, 255, 0.035) 142px
+        );
+    animation: sweepLines 14s linear infinite;
+    z-index: 0;
+}
+
+@keyframes sweepLines {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-280px); }
 }
 
 h1 {
-    color: #ffffff;
-    font-size: 36px;
-    margin: 10px 0 5px 0;
-    /* توهج نيون أزرق فاتح يشبه إضاءة بلايستيشن 5 */
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4);
-    letter-spacing: 2px;
-    font-weight: 800;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ps-white);
+    font-size: 38px;
+    margin: 10px 0 6px 0;
+    text-shadow:
+        0 0 12px rgba(0, 212, 255, 0.9),
+        0 0 30px rgba(0, 212, 255, 0.5),
+        0 0 60px rgba(0, 119, 255, 0.3);
+    letter-spacing: 3px;
+    font-weight: 900;
     text-transform: uppercase;
+    position: relative;
+    z-index: 1;
 }
 
 h3 {
-    color: #a0b0c0;
-    font-size: 14px;
-    font-weight: normal;
+    color: #8fa6c2;
+    font-size: 13px;
+    font-weight: 400;
     margin: 0 0 15px 0;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    z-index: 1;
 }
 
 hr {
     border: 0;
     height: 1px;
-    /* خط متدرج يختفي في الأطراف ليعطي لمسة فخامة */
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
-    margin: 20px auto;
+    background: linear-gradient(90deg, transparent, var(--ps-blue), transparent);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+    margin: 22px auto;
     width: 80%;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-container {
     margin: 25px 0 35px 0;
-    color: #ffffff;
+    color: var(--ps-white);
+    position: relative;
+    z-index: 1;
 }
 
 button {
-    /* زر انسيابي بتدرج أزرق يشبه أزرار أسترو بوت */
-    background: linear-gradient(135deg, #00d4ff, #0077ff);
-    color: white;
-    border: none;
-    border-radius: 30px; /* حواف دائرية بالكامل */
-    padding: 12px 40px;
-    font-size: 18px;
-    font-weight: bold;
+    background: linear-gradient(135deg, var(--ps-blue) 0%, var(--ps-blue-deep) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    padding: 14px 46px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 119, 255, 0.4);
-    transition: all 0.3s ease-in-out; /* حركة ناعمة جداً */
+    box-shadow:
+        0 5px 18px rgba(0, 119, 255, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
 }
 
 button:disabled, button:hover:disabled {
-    background: #1a2a40;
-    color: #556677;
+    background: #16233a;
+    color: #4c5c72;
+    border-color: rgba(255, 255, 255, 0.05);
     box-shadow: none;
     cursor: not-allowed;
     transform: none;
 }
 
 button:hover:not(:disabled) {
-    /* تأثير ارتفاع وتوهج قوي عند التمرير يعطي إحساساً بالتفاعل */
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.8);
-    transform: translateY(-3px);
+    box-shadow:
+        0 10px 30px rgba(0, 212, 255, 0.85),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-4px) scale(1.02);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(-1px) scale(0.99);
 }
 
 .main-layout {
     width: 96%;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex; /* لترتيب متناسق للعناصر بجانب بعضها */
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
 }
 
 .media-box {
     width: 25%;
+    min-width: 160px;
     text-align: center;
 }
 
@@ -95,40 +166,40 @@ button:hover:not(:disabled) {
     width: 90%;
     max-width: 200px;
     height: auto;
-    border: none;
-    /* توهج هولوغرامي أزرق حول الشعار */
-    filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.7)); 
-    /* حركة الطفو المستمرة */
+    border-radius: 14px;
+    filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.65));
     animation: floatAstro 4s ease-in-out infinite;
 }
 
-/* كود الحركة (الأنيميشن) لطفو الشعار */
 @keyframes floatAstro {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+    0%   { transform: translateY(0px) rotate(0deg); }
+    50%  { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
 
 #console {
     width: 70%;
-    /* تأثير الزجاج الشفاف (Glassmorphism) */
-    background: rgba(4, 15, 30, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #00f0ff; /* لون نصوص الأوامر أزرق ساطع */
+    min-width: 280px;
+    background: var(--ps-panel);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #4fe8ff;
     font-size: 14px;
-    padding: 20px;
+    padding: 22px;
     text-align: left;
     height: 290px;
     overflow-y: auto;
     word-wrap: break-word;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.1), 0 10px 30px rgba(0,0,0,0.5);
-    border-radius: 15px; /* حواف دائرية عصرية */
+    border: 1px solid var(--ps-border);
+    box-shadow:
+        inset 0 0 25px rgba(0, 212, 255, 0.12),
+        0 15px 40px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
     font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 6px rgba(0, 212, 255, 0.5);
 }
 
-/* تخصيص شريط التمرير (السكرول) داخل صندوق الأوامر ليتماشى مع التصميم */
 #console::-webkit-scrollbar {
     width: 8px;
 }
@@ -137,35 +208,73 @@ button:hover:not(:disabled) {
     border-radius: 10px;
 }
 #console::-webkit-scrollbar-thumb {
-    background: rgba(0, 212, 255, 0.5);
+    background: linear-gradient(180deg, var(--ps-blue), var(--ps-blue-deep));
     border-radius: 10px;
 }
 
 #kernel-options {
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* تخصيص أزرار التحديد (Radio) لتصبح حلقات مضيئة */
+#kernel-options label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-right: 20px;
+}
+
 input[type="radio"] {
     -webkit-appearance: none;
     appearance: none;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.3rem;
+    height: 1.3rem;
     border: 2px solid #3a5a80;
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
     vertical-align: middle;
-    margin-right: 5px;
-    transition: all 0.2s ease;
+    margin-right: 6px;
+    transition: all 0.25s ease;
+}
+
+input[type="radio"]:hover {
+    border-color: var(--ps-blue);
 }
 
 input[type="radio"]:checked {
-    background-color: #00d4ff;
-    border-color: #00d4ff;
-    box-shadow: 0 0 12px rgba(0, 212, 255, 0.9);
+    background: radial-gradient(circle, #ffffff 0%, var(--ps-blue) 60%);
+    border-color: var(--ps-blue);
+    box-shadow: 0 0 14px rgba(0, 212, 255, 0.95), 0 0 28px rgba(0, 212, 255, 0.5);
 }
 
-.mt-2{
+/* أزرار الاختيار المربعة (checkbox) بنفس روح PS5 */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid #3a5a80;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.03);
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.25s ease;
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--ps-blue);
+}
+
+input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, var(--ps-blue), var(--ps-blue-deep));
+    border-color: var(--ps-blue);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.85);
+}
+
+.mt-2 {
     margin-top: 2rem;
+    position: relative;
+    z-index: 1;
 }
